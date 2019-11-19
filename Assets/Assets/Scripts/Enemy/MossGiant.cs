@@ -19,19 +19,21 @@ public class MossGiant : Enemy, IDamageable
 
     public void Damage()
     {
-        if (!isDead)
-        {
-            Debug.Log("Damage()");
-            Health--;
-            anim.SetTrigger("Hit");
-            isHit = true;
-            anim.SetBool("InCombat", true);
+        if (isDead)
+            return;
 
-            if (Health < 1)
-            {
-                anim.SetTrigger("Death");
-                isDead = true;
-            }
+        Health--;
+        anim.SetTrigger("Hit");
+        isHit = true;
+        anim.SetBool("InCombat", true);
+
+        if (Health < 1)
+        {
+            anim.SetTrigger("Death");
+            isDead = true;
+
+            GameObject coin = Instantiate(coinPrefab, transform.position, Quaternion.identity);
+            coin.GetComponent<Coin>().coins = base.coins;
         }
     }
 }

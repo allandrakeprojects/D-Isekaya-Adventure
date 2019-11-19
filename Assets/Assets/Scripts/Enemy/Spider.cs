@@ -22,15 +22,17 @@ public class Spider : Enemy, IDamageable
 
     public void Damage()
     {
-        if (!isDead)
+        if (isDead)
+            return;
+        
+        Health--;
+        if (Health < 1)
         {
-            Health--;
+            anim.SetTrigger("Death");
+            isDead = true;
 
-            if (Health < 1)
-            {
-                anim.SetTrigger("Death");
-                isDead = true;
-            }
+            GameObject coin = Instantiate(coinPrefab, transform.position, Quaternion.identity);
+            coin.GetComponent<Coin>().coins = base.coins;
         }
     }
 

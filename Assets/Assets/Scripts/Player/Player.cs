@@ -5,6 +5,8 @@ public class Player : MonoBehaviour, IDamageable
 {
     public int Health { get; set; }
 
+    public int coins;
+
     //get handle to rigidbody
     private Rigidbody2D _rigidbody;
     //variable for jumpForce
