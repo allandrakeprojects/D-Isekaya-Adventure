@@ -14,7 +14,7 @@ public class Coin : MonoBehaviour
 
             if (player != null)
             {
-                player.coins += coins;
+                player.AddCoins(coins);
                 Destroy(this.gameObject);
             }
         }

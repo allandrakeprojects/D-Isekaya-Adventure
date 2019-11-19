@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityStandardAssets.CrossPlatformInput;
 
 public class Player : MonoBehaviour, IDamageable
 {
@@ -35,15 +36,21 @@ public class Player : MonoBehaviour, IDamageable
         _playerSprite = GetComponentInChildren<SpriteRenderer>();
 
         _swordArcSprite = transform.GetChild(1).GetComponent<SpriteRenderer>();
+
+        Health = 4;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Movement();
+        if (Health > 0)
+        {
+            Movement();
+        }
 
         //is left click && grounded attack
-        if (Input.GetMouseButtonDown(0) && IsGrounded())
+        //if (Input.GetMouseButtonDown(0) && IsGrounded())
+        if (CrossPlatformInputManager.GetButtonDown("B_Button") && IsGrounded())
         {
             _playerAnim.Attack();
         }
@@ -52,7 +59,8 @@ public class Player : MonoBehaviour, IDamageable
     void Movement()
     {
         //horizontal input for left/right
-        float move = Input.GetAxisRaw("Horizontal");
+        //float move = Input.GetAxisRaw("Horizontal");
+        float move = CrossPlatformInputManager.GetAxis("Horizontal");
 
         _grounded = IsGrounded();
 
@@ -68,7 +76,9 @@ public class Player : MonoBehaviour, IDamageable
         }
 
         //if space key && grounded == true
-        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
+
+        //if ((Input.GetKeyDown(KeyCode.Space) && IsGrounded())
+        if (CrossPlatformInputManager.GetButtonDown("A_Button") && IsGrounded())
         {
             Debug.Log("Jump!");
             _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _jumpForce);
@@ -134,12 +144,26 @@ public class Player : MonoBehaviour, IDamageable
 
     public void Damage()
     {
-        Debug.Log("asd");
-        //Health--;
+        if (Health < 1)
+        {
+            return;
+        }
 
-        //if (Health < 1)
-        //{
-        //    anim.SetTrigger("Death");
-        //}
+        Debug.Log("asd");
+        Health--;
+        UIManager.Instance.RemoveLives(Health);
+
+        if (Health < 1)
+        {
+            _playerAnim.Death();
+        }
     }
+
+    public void AddCoins(int amount)
+    {
+        coins += amount;
+        UIManager.Instance.UpdateCoinCount(coins);
+    }
+
+
 }
