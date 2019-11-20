@@ -1,10 +1,18 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityStandardAssets.CrossPlatformInput;
 
 public class Player : MonoBehaviour, IDamageable
 {
     public int Health { get; set; }
+
+    public AudioClip[] playerSound;
+
+    public Image damageScreen;
+    private bool damaged = false;
+    Color damageColor = new Color(255f, 30f, 30f, 0.2f);
+    private float smoothColor = 1f;
 
     public int coins;
 
@@ -38,6 +46,8 @@ public class Player : MonoBehaviour, IDamageable
         _swordArcSprite = transform.GetChild(1).GetComponent<SpriteRenderer>();
 
         Health = 4;
+
+        damaged = false;
     }
 
     // Update is called once per frame
@@ -53,7 +63,20 @@ public class Player : MonoBehaviour, IDamageable
         if (CrossPlatformInputManager.GetButtonDown("B_Button") && IsGrounded())
         {
             _playerAnim.Attack();
+            AudioSource.PlayClipAtPoint(playerSound[1], Camera.main.transform.position);
         }
+
+        if (damaged)
+        {
+            damageScreen.color = damageColor;
+            AudioSource.PlayClipAtPoint(playerSound[4], Camera.main.transform.position);
+        }
+        else
+        {
+            damageScreen.color = Color.Lerp(damageScreen.color, Color.clear, smoothColor * Time.deltaTime);
+        }
+
+        damaged = false;
     }
 
     void Movement()
@@ -86,6 +109,8 @@ public class Player : MonoBehaviour, IDamageable
 
             //tell animator to jump
             _playerAnim.Jump(true);
+
+            AudioSource.PlayClipAtPoint(playerSound[0], Camera.main.transform.position);
         }
 
         _rigidbody.velocity = new Vector2(move * _speed, _rigidbody.velocity.y);
@@ -151,17 +176,22 @@ public class Player : MonoBehaviour, IDamageable
 
         Debug.Log("asd");
         Health--;
+        _playerAnim.Hit();
         UIManager.Instance.RemoveLives(Health);
+
+        damaged = true;
 
         if (Health < 1)
         {
             _playerAnim.Death();
+            AudioSource.PlayClipAtPoint(playerSound[2], Camera.main.transform.position);
         }
     }
 
     public void AddCoins(int amount)
     {
         coins += amount;
+        AudioSource.PlayClipAtPoint(playerSound[3], Camera.main.transform.position);
         UIManager.Instance.UpdateCoinCount(coins);
     }
 

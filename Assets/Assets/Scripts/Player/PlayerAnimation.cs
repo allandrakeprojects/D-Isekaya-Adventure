@@ -35,4 +35,9 @@ public class PlayerAnimation : MonoBehaviour
     {
         _anim.SetTrigger("Death");
     }
+
+    public void Hit()
+    {
+        _anim.SetTrigger("Hit");
+    }
 }
