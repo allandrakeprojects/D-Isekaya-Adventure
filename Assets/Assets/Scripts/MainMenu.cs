@@ -16,13 +16,21 @@ public class MainMenu : MonoBehaviour
 
     public void StartButton()
     {
-        AudioSource.PlayClipAtPoint(menuSound[0], Camera.main.transform.position);
+        if (PlayerPrefs.GetInt("Muted") == 0)
+        {
+            AudioSource.PlayClipAtPoint(menuSound[0], Camera.main.transform.position);
+        }
+
         levelManager.LoadGameAfterDelay();
     }
 
     public void QuitButton()
     {
-        AudioSource.PlayClipAtPoint(menuSound[1], Camera.main.transform.position);
+        if (PlayerPrefs.GetInt("Muted") == 0)
+        {
+            AudioSource.PlayClipAtPoint(menuSound[1], Camera.main.transform.position);
+        }
+
         levelManager.LoadQuitAfterDelay();
     }
 
