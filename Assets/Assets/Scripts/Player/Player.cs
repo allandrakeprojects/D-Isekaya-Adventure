@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityStandardAssets.CrossPlatformInput;
 
@@ -32,6 +33,8 @@ public class Player : MonoBehaviour, IDamageable
     private SpriteRenderer _playerSprite;
     private SpriteRenderer _swordArcSprite;
 
+    private LevelManager levelManager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,6 +51,8 @@ public class Player : MonoBehaviour, IDamageable
         Health = 4;
 
         damaged = false;
+
+        levelManager = GameObject.FindObjectOfType<LevelManager>();
     }
 
     // Update is called once per frame
@@ -82,8 +87,8 @@ public class Player : MonoBehaviour, IDamageable
     void Movement()
     {
         //horizontal input for left/right
-        //float move = Input.GetAxisRaw("Horizontal");
-        float move = CrossPlatformInputManager.GetAxis("Horizontal");
+        float move = Input.GetAxisRaw("Horizontal");
+        //float move = CrossPlatformInputManager.GetAxis("Horizontal");
 
         _grounded = IsGrounded();
 
@@ -185,6 +190,7 @@ public class Player : MonoBehaviour, IDamageable
         {
             _playerAnim.Death();
             AudioSource.PlayClipAtPoint(playerSound[2], Camera.main.transform.position);
+            levelManager.LoadLooseLevelAfterDelay();
         }
     }
 
