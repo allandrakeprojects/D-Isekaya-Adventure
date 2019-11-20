@@ -8,7 +8,6 @@ public class Spikes : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D other)
 	{
-		Debug.Log(other.name);
 		Player player = other.GetComponent<Player>();
 
 		if (player != null)
