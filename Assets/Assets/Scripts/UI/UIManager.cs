@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    [SerializeField] private GameObject pauseMenu;
+
     private static UIManager _instance;
     public static UIManager Instance
     {
@@ -59,6 +61,11 @@ public class UIManager : MonoBehaviour
 
         //healthBars[0].enabled = false;
 
+    }
+
+    public void Pause()
+    {
+        pauseMenu.SetActive(true);
     }
 }
 

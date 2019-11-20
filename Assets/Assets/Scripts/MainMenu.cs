@@ -25,4 +25,9 @@ public class MainMenu : MonoBehaviour
         AudioSource.PlayClipAtPoint(menuSound[1], Camera.main.transform.position);
         levelManager.LoadQuitAfterDelay();
     }
+
+    public void Resume()
+    {
+        this.gameObject.SetActive(false);
+    }
 }

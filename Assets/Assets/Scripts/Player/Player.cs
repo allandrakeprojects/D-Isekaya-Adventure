@@ -68,13 +68,21 @@ public class Player : MonoBehaviour, IDamageable
         if (CrossPlatformInputManager.GetButtonDown("B_Button") && IsGrounded())
         {
             _playerAnim.Attack();
-            AudioSource.PlayClipAtPoint(playerSound[1], Camera.main.transform.position);
+
+            if (PlayerPrefs.GetInt("Muted") == 0)
+            {
+                AudioSource.PlayClipAtPoint(playerSound[1], Camera.main.transform.position);
+            }
         }
 
         if (damaged)
         {
             damageScreen.color = damageColor;
-            AudioSource.PlayClipAtPoint(playerSound[4], Camera.main.transform.position);
+
+            if (PlayerPrefs.GetInt("Muted") == 0)
+            {
+                AudioSource.PlayClipAtPoint(playerSound[4], Camera.main.transform.position);
+            }
         }
         else
         {
@@ -115,7 +123,10 @@ public class Player : MonoBehaviour, IDamageable
             //tell animator to jump
             _playerAnim.Jump(true);
 
-            AudioSource.PlayClipAtPoint(playerSound[0], Camera.main.transform.position);
+            if (PlayerPrefs.GetInt("Muted") == 0)
+            {
+                AudioSource.PlayClipAtPoint(playerSound[0], Camera.main.transform.position);
+            }
         }
 
         _rigidbody.velocity = new Vector2(move * _speed, _rigidbody.velocity.y);
@@ -189,7 +200,12 @@ public class Player : MonoBehaviour, IDamageable
         if (Health < 1)
         {
             _playerAnim.Death();
-            AudioSource.PlayClipAtPoint(playerSound[2], Camera.main.transform.position);
+
+            if (PlayerPrefs.GetInt("Muted") == 0)
+            {
+                AudioSource.PlayClipAtPoint(playerSound[2], Camera.main.transform.position);
+            }
+
             levelManager.LoadLooseLevelAfterDelay();
         }
     }
@@ -197,7 +213,12 @@ public class Player : MonoBehaviour, IDamageable
     public void AddCoins(int amount)
     {
         coins += amount;
-        AudioSource.PlayClipAtPoint(playerSound[3], Camera.main.transform.position);
+
+        if (PlayerPrefs.GetInt("Muted") == 0)
+        {
+            AudioSource.PlayClipAtPoint(playerSound[3], Camera.main.transform.position);
+        }
+
         UIManager.Instance.UpdateCoinCount(coins);
     }
 
