@@ -21,6 +21,10 @@ public abstract class Enemy : MonoBehaviour
 
     protected Player player;
 
+    //Combat Mode
+    [SerializeField]
+    protected float playerDistance;
+
     public virtual void Init()
     {
         anim = GetComponentInChildren<Animator>();
@@ -42,7 +46,25 @@ public abstract class Enemy : MonoBehaviour
 
         if (!isDead)
         {
-            Movement();
+            //keep calculating the distance between player and enemy
+            playerDistance = Vector3.Distance(this.transform.position, player.transform.position);
+
+            if (playerDistance > 2)
+            {
+                anim.SetBool("InCombat", false);
+
+                // if the animation that is currently playing isn't Walk, do nothing
+                if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Walk"))
+                {
+                    return;
+                }
+
+                Movement();
+            }
+            else if (playerDistance <= 2)
+            {
+                CombatMode();
+            }
         }
     }
 
@@ -93,5 +115,18 @@ public abstract class Enemy : MonoBehaviour
                 sprite.flipX = true;
             }
         }
+    }
+
+    //Activate the Combat Mode
+    public void CombatMode()
+    {
+        anim.SetBool("InCombat", true);
+
+        //Flip the sprite to the player direction
+        if (this.transform.position.x > player.transform.position.x)
+            sprite.flipX = true;
+        else if (this.transform.position.x < player.transform.position.x)
+            sprite.flipX = false;
+
     }
 }

@@ -18,7 +18,7 @@ public class WinCollider : MonoBehaviour
 
 		if (player != null)
 		{
-			levelManager.LoadWinLevel();
+			levelManager.LoadWinLevelAfterDelay();
 		}
 	}
 
