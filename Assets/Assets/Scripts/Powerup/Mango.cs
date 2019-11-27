@@ -8,7 +8,13 @@ public class Mango : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            Player player = other.GetComponent<Player>();
 
+            if (player != null)
+            {
+                player.EnableFlame();
+                Destroy(this.gameObject);
+            }
         }
     }
 }

@@ -3,6 +3,11 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
+    public void LoadMainMenuAfterDelay()
+    {
+        Invoke("MainMenu", 1.0f);
+    }
+
     public void LoadGameAfterDelay()
     {
         Invoke("Game", 1.0f);
@@ -13,14 +18,19 @@ public class LevelManager : MonoBehaviour
         Invoke("Quit", 1.0f);
     }
 
-    public void LoadLooseLevelAfterDelay()
+    public void LoadWinMenuAfterDelay()
     {
-        Invoke("LoadLoseLevel", 2.0f);
+        Invoke("WinMenu", 2.0f);
     }
 
-    public void LoadWinLevelAfterDelay()
+    public void LoadLoseMenuAfterDelay()
     {
-        Invoke("LoadWinLevel", 2.0f);
+        Invoke("LoseMenu", 2.0f);
+    }
+
+    public void MainMenu()
+    {
+        SceneManager.LoadScene("Main_Menu");
     }
 
     public void Game()
@@ -33,15 +43,13 @@ public class LevelManager : MonoBehaviour
         Application.Quit();
     }
 
-    public void LoadWinLevel()
+    public void WinMenu()
 	{
 		SceneManager.LoadScene("Win_Screen");
     }
 
-    public void LoadLoseLevel()
+    public void LoseMenu()
     {
         SceneManager.LoadScene("Lose_Screen");
     }
-
-
 }

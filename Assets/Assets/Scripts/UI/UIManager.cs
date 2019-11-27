@@ -43,6 +43,19 @@ public class UIManager : MonoBehaviour
     public void UpdateCoinCount(int count)
     {
         coinCountText.text = "" + count;
+        PlayerPrefs.SetInt("score", count);
+
+        if (PlayerPrefs.GetInt("highscore", 0) < count)
+        {
+            PlayerPrefs.SetInt("highscore", count);
+            PlayerPrefs.SetInt("score", 10000);
+        }
+        else
+        {
+            PlayerPrefs.SetInt("score", count);
+        }
+
+        PlayerPrefs.Save();
     }
     
     public void RemoveLives(int livesRemaining)
@@ -58,14 +71,20 @@ public class UIManager : MonoBehaviour
 
     public void AddLives(int livesRemaining)
     {
-
-        //healthBars[0].enabled = false;
+        for (int i = 0; i <= livesRemaining; i++)
+        {
+            if (i == livesRemaining)
+            {
+                healthBars[i - 1].enabled = true;
+            }
+        }
 
     }
 
     public void Pause()
     {
         pauseMenu.SetActive(true);
+        Time.timeScale = 0;
     }
 }
 

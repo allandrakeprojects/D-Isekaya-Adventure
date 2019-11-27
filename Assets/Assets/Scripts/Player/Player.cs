@@ -71,7 +71,14 @@ public class Player : MonoBehaviour, IDamageable
 
             if (PlayerPrefs.GetInt("Muted") == 0)
             {
-                AudioSource.PlayClipAtPoint(playerSound[1], Camera.main.transform.position);
+                if (_swordArcSprite.enabled)
+                {
+                    AudioSource.PlayClipAtPoint(playerSound[5], Camera.main.transform.position);
+                }
+                else
+                {
+                    AudioSource.PlayClipAtPoint(playerSound[1], Camera.main.transform.position);
+                }
             }
         }
 
@@ -95,8 +102,8 @@ public class Player : MonoBehaviour, IDamageable
     void Movement()
     {
         //horizontal input for left/right
-        //float move = Input.GetAxisRaw("Horizontal");
-        float move = CrossPlatformInputManager.GetAxis("Horizontal");
+        float move = Input.GetAxisRaw("Horizontal");
+        //float move = CrossPlatformInputManager.GetAxis("Horizontal");
 
         _grounded = IsGrounded();
 
@@ -192,7 +199,7 @@ public class Player : MonoBehaviour, IDamageable
 
         Debug.Log("asd");
         Health--;
-        _playerAnim.Hit();
+        //_playerAnim.Hit();
         UIManager.Instance.RemoveLives(Health);
 
         damaged = true;
@@ -206,7 +213,7 @@ public class Player : MonoBehaviour, IDamageable
                 AudioSource.PlayClipAtPoint(playerSound[2], Camera.main.transform.position);
             }
 
-            levelManager.LoadLooseLevelAfterDelay();
+            levelManager.LoadLoseMenuAfterDelay();
         }
     }
 
@@ -222,5 +229,52 @@ public class Player : MonoBehaviour, IDamageable
         UIManager.Instance.UpdateCoinCount(coins);
     }
 
+    public void AddHealth(int amount)
+    {
+        if (Health != 4)
+        {
+            Health += amount;
+        }
+
+        if (PlayerPrefs.GetInt("Muted") == 0)
+        {
+            AudioSource.PlayClipAtPoint(playerSound[6], Camera.main.transform.position);
+        }
+
+        UIManager.Instance.AddLives(Health);
+    }
+
+    public void AddSpeed(int amount)
+    {
+        _speed = amount;
+        _jumpForce = 7.5f;
+
+        if (PlayerPrefs.GetInt("Muted") == 0)
+        {
+            AudioSource.PlayClipAtPoint(playerSound[6], Camera.main.transform.position);
+        }
+
+        StartCoroutine(ResetPowerUps());
+    }
+
+    public void EnableFlame()
+    {
+        _swordArcSprite.enabled = true;
+
+        if (PlayerPrefs.GetInt("Muted") == 0)
+        {
+            AudioSource.PlayClipAtPoint(playerSound[6], Camera.main.transform.position);
+        }
+
+        StartCoroutine(ResetPowerUps());
+    }
+
+    IEnumerator ResetPowerUps()
+    {
+        yield return new WaitForSeconds(10.0f);
+        _speed = 2.5f;
+        _jumpForce = 7.0f;
+        _swordArcSprite.enabled = false;
+    }
 
 }
