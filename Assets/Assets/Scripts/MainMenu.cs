@@ -19,12 +19,13 @@ public class MainMenu : MonoBehaviour
 
     public void MainMenuButton()
     {
+        Time.timeScale = 1;
+
         if (PlayerPrefs.GetInt("Muted") == 0)
         {
             AudioSource.PlayClipAtPoint(menuSound[0], Camera.main.transform.position);
         }
 
-        Time.timeScale = 1;
         levelManager.LoadMainMenuAfterDelay();
     }
 
