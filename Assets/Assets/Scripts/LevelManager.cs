@@ -20,7 +20,7 @@ public class LevelManager : MonoBehaviour
 
     public void LoadWinMenuAfterDelay()
     {
-        Invoke("WinMenu", 2.0f);
+        Invoke("WinMenu", 1.0f);
     }
 
     public void LoadLoseMenuAfterDelay()

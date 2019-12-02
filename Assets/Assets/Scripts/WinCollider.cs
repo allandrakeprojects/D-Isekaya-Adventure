@@ -6,7 +6,6 @@ public class WinCollider : MonoBehaviour
 {
 	private LevelManager levelManager;
 
-    // Start is called before the first frame update
     void Start()
     {
 		levelManager = GameObject.FindObjectOfType<LevelManager>();
@@ -21,5 +20,4 @@ public class WinCollider : MonoBehaviour
 			levelManager.LoadWinMenuAfterDelay();
 		}
 	}
-
 }
