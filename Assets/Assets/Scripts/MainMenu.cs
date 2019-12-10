@@ -9,6 +9,10 @@ public class MainMenu : MonoBehaviour
     public AudioClip[] menuSound;
     private LevelManager levelManager;
     public Text coinCountText;
+    public Text heartCountText;
+    public Text messageHeartText;
+    public bool detectStart = false;
+    [SerializeField] private GameObject IAPMenu;
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +23,9 @@ public class MainMenu : MonoBehaviour
 
     public void MainMenuButton()
     {
+        PlayerPrefs.SetString("waitDate", System.DateTime.Now.AddMinutes(30).ToString());
+        PlayerPrefs.Save();
+
         Time.timeScale = 1;
 
         if (PlayerPrefs.GetInt("Muted") == 0)
@@ -31,12 +38,30 @@ public class MainMenu : MonoBehaviour
 
     public void StartButton()
     {
+        if (PlayerPrefs.GetInt("heart") == 0)
+        {
+            messageHeartText.text = "Not Enough Heart!";
+        }
+        else
+        {
+            if (!detectStart)
+            {
+                detectStart = true;
+                messageHeartText.text = "";
+                int getHeart = PlayerPrefs.GetInt("heart") - 1;
+                Debug.Log(getHeart.ToString());
+                PlayerPrefs.SetInt("heart", getHeart);
+                PlayerPrefs.Save();
+                Debug.Log(getHeart.ToString());
+                heartCountText.text = getHeart.ToString();
+                levelManager.LoadGameAfterDelay();
+            }
+        }
+
         if (PlayerPrefs.GetInt("Muted") == 0)
         {
             AudioSource.PlayClipAtPoint(menuSound[0], Camera.main.transform.position);
         }
-
-        levelManager.LoadGameAfterDelay();
     }
 
     public void QuitButton()
@@ -53,6 +78,16 @@ public class MainMenu : MonoBehaviour
     {
         this.gameObject.SetActive(false);
         Time.timeScale = 1;
+    }
+
+    public void OpenIAP()
+    {
+        IAPMenu.SetActive(true);
+    }
+
+    public void CloseIAP()
+    {
+        IAPMenu.SetActive(false);
     }
 
     public void UpdateScore()

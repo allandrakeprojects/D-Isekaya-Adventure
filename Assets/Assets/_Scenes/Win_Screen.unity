@@ -222,6 +222,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 24cb67fc3ce0b4435a73b79d1df47a2f, type: 3}
   - {fileID: 8300000, guid: 9a6dc0dbba8874c7c86062a166792d34, type: 3}
   coinCountText: {fileID: 551854566}
+  heartCountText: {fileID: 0}
+  messageHeartText: {fileID: 0}
+  detectStart: 0
 --- !u!114 &327368829
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -472,7 +475,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -293, y: -239}
+  m_AnchoredPosition: {x: -295, y: -239}
   m_SizeDelta: {x: 247.8, y: 121.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &359847577
