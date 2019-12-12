@@ -6,7 +6,11 @@ using UnityEngine.UI;
 public class CompletedCollider : MonoBehaviour
 {
     public GameObject previousLevel;
+    public GameObject previousPlayer;
+    public GameObject previousCam;
     public GameObject nextLevel;
+    public GameObject nextPlayer;
+    public GameObject nextCam;
     [SerializeField]
     public float x;
     [SerializeField]
@@ -28,7 +32,13 @@ public class CompletedCollider : MonoBehaviour
         if (player != null)
         {
             previousLevel.SetActive(false);
+            previousPlayer.SetActive(false);
+            previousCam.SetActive(false);
+
             nextLevel.SetActive(true);
+            nextPlayer.SetActive(true);
+            nextCam.SetActive(true);
+
             player.transform.position = new Vector3(x, y, z);
         }
     }
