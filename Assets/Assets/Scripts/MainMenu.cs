@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -13,12 +14,15 @@ public class MainMenu : MonoBehaviour
     public Text messageHeartText;
     public bool detectStart = false;
     [SerializeField] private GameObject IAPMenu;
+    [SerializeField] private GameObject LevelSelection;
+    public Button[] LevelBars;
 
     // Start is called before the first frame update
     void Start()
     {
         levelManager = GameObject.FindObjectOfType<LevelManager>();
         UpdateScore();
+        UpdateLevel();
     }
 
     public void MainMenuButton()
@@ -36,7 +40,7 @@ public class MainMenu : MonoBehaviour
         levelManager.LoadMainMenuAfterDelay();
     }
 
-    public void StartButton()
+    public void PLAYGAME()
     {
         if (PlayerPrefs.GetInt("heart") == 0)
         {
@@ -90,6 +94,51 @@ public class MainMenu : MonoBehaviour
         IAPMenu.SetActive(false);
     }
 
+    public void OpenLevelSelection()
+    {
+        LevelSelection.SetActive(true);
+    }
+
+    public void CloseLevelSelection()
+    {
+        LevelSelection.SetActive(false);
+    }
+
+    public void OpenLevel_1()
+    {
+        PlayerPrefs.SetInt("level_selected", 1);
+        PlayerPrefs.Save();
+        PLAYGAME();
+    }
+
+    public void OpenLevel_2()
+    {
+        PlayerPrefs.SetInt("level_selected", 2);
+        PlayerPrefs.Save();
+        PLAYGAME();
+    }
+
+    public void OpenLevel_3()
+    {
+        PlayerPrefs.SetInt("level_selected", 3);
+        PlayerPrefs.Save();
+        PLAYGAME();
+    }
+
+    public void OpenLevel_4()
+    {
+        PlayerPrefs.SetInt("level_selected", 4);
+        PlayerPrefs.Save();
+        PLAYGAME();
+    }
+
+    public void OpenLevel_5()
+    {
+        PlayerPrefs.SetInt("level_selected", 5);
+        PlayerPrefs.Save();
+        PLAYGAME();
+    }
+
     public void UpdateScore()
     {
         Scene currentScene = SceneManager.GetActiveScene();
@@ -128,5 +177,53 @@ public class MainMenu : MonoBehaviour
             }
         }
 
+    }
+
+    public void UpdateLevel()
+    {
+        try
+        {
+            if (PlayerPrefs.GetString("level", "1,0,0,0,0") == "1,0,0,0,0")
+            {
+                // Level 1
+                PlayerPrefs.SetString("level", "1,0,0,0,0");
+                PlayerPrefs.Save();
+                LevelBars[0].interactable = true;
+            }
+            else
+            {
+                string level = PlayerPrefs.GetString("level");
+                Debug.Log(level);
+                string[] levels = level.Split(',');
+                if (levels[0] == "1")
+                {
+                    LevelBars[0].interactable = true;
+                }
+
+                if (levels[1] == "1")
+                {
+                    LevelBars[1].interactable = true;
+                }
+
+                if (levels[2] == "1")
+                {
+                    LevelBars[2].interactable = true;
+                }
+
+                if (levels[3] == "1")
+                {
+                    LevelBars[3].interactable = true;
+                }
+
+                if (levels[4] == "1")
+                {
+                    LevelBars[4].interactable = true;
+                }
+            }
+        }
+        catch (Exception err)
+        {
+            // leave blank
+        }
     }
 }

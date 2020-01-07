@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,6 +7,7 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private GameObject pauseMenu;
+    public GameObject[] LevelBars;
 
     private static UIManager _instance;
     public static UIManager Instance
@@ -17,6 +19,42 @@ public class UIManager : MonoBehaviour
                 Debug.LogError("UI Manager is Null!");
             }
             return _instance;
+        }
+    }
+
+    private void Start()
+    {
+        UpdateLevel();
+    }
+
+    public void UpdateLevel()
+    {
+        try
+        {
+            int level = PlayerPrefs.GetInt("level_selected");
+            if (level == 2)
+            {
+                LevelBars[0].SetActive(true);
+            }
+
+            if (level == 3)
+            {
+                LevelBars[1].SetActive(true);
+            }
+
+            if (level == 4)
+            {
+                LevelBars[2].SetActive(true);
+            }
+
+            if (level == 5)
+            {
+                LevelBars[3].SetActive(true);
+            }
+        }
+        catch (Exception err)
+        {
+            // leave blank
         }
     }
 

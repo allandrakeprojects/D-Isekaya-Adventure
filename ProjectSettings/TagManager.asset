@@ -6,6 +6,13 @@ TagManager:
   tags:
   - Ground
   - Music
+  - Obstacle
+  - ground
+  - ExplosionFX
+  - Level_2
+  - Level_3
+  - Level_4
+  - Level_5
   layers:
   - Default
   - TransparentFX

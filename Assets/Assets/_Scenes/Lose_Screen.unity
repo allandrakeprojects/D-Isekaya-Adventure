@@ -2580,6 +2580,8 @@ MonoBehaviour:
   messageHeartText: {fileID: 585810994}
   detectStart: 0
   IAPMenu: {fileID: 1123009433}
+  LevelSelection: {fileID: 0}
+  LevelBars: []
 --- !u!114 &1717087673
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3255,7 +3257,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1717087672}
-        m_MethodName: StartButton
+        m_MethodName: PLAYGAME
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -12,6 +12,8 @@ public class CompletedCollider : MonoBehaviour
     public GameObject nextPlayer;
     public GameObject nextCam;
     [SerializeField]
+    public int level;
+    [SerializeField]
     public float x;
     [SerializeField]
     public float y;
@@ -31,6 +33,8 @@ public class CompletedCollider : MonoBehaviour
 
         if (player != null)
         {
+            UpdateLevel();
+
             previousLevel.SetActive(false);
             previousPlayer.SetActive(false);
             previousCam.SetActive(false);
@@ -40,6 +44,38 @@ public class CompletedCollider : MonoBehaviour
             nextCam.SetActive(true);
 
             player.transform.position = new Vector3(x, y, z);
+        }
+    }
+
+    private void UpdateLevel()
+    {
+        string get_level = PlayerPrefs.GetString("level");
+        Debug.Log(level);
+        string[] levels = get_level.Split(',');
+
+        if (level == 2)
+        {
+            string final_level_update = levels[0] + ',' + '1' + ',' + levels[2] + ',' + levels[3] + ',' + levels[4];
+            PlayerPrefs.SetString("level", final_level_update);
+            PlayerPrefs.Save();
+        }
+        else if (level == 3)
+        {
+            string final_level_update = levels[0] + ',' + levels[1] + ',' + '1' + ',' + levels[3] + ',' + levels[4];
+            PlayerPrefs.SetString("level", final_level_update);
+            PlayerPrefs.Save();
+        }
+        else if (level == 4)
+        {
+            string final_level_update = levels[0] + ',' + levels[1] + ',' + levels[2] + ',' + '1' + ',' + levels[4];
+            PlayerPrefs.SetString("level", final_level_update);
+            PlayerPrefs.Save();
+        }
+        else if (level == 5)
+        {
+            string final_level_update = levels[0] + ',' + levels[1] + ',' + levels[2] + ',' + levels[3] + ',' + '1';
+            PlayerPrefs.SetString("level", final_level_update);
+            PlayerPrefs.Save();
         }
     }
 }
