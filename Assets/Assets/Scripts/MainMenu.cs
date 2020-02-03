@@ -16,6 +16,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private GameObject IAPMenu;
     [SerializeField] private GameObject LevelSelection;
     public Button[] LevelBars;
+    public GameObject about;
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +28,7 @@ public class MainMenu : MonoBehaviour
 
     public void MainMenuButton()
     {
-        PlayerPrefs.SetString("waitDate", System.DateTime.Now.AddMinutes(30).ToString());
+        PlayerPrefs.SetString("waitDate", System.DateTime.Now.AddHours(1).AddMinutes(30).ToString());
         PlayerPrefs.Save();
 
         Time.timeScale = 1;
@@ -137,6 +138,16 @@ public class MainMenu : MonoBehaviour
         PlayerPrefs.SetInt("level_selected", 5);
         PlayerPrefs.Save();
         PLAYGAME();
+    }
+
+    public void OpenAbout()
+    {
+        about.SetActive(true);
+    }
+
+    public void CloseAbout()
+    {
+        about.SetActive(false);
     }
 
     public void UpdateScore()

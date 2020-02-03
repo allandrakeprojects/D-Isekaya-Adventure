@@ -51,12 +51,13 @@ public class Heart : MonoBehaviour
                 DateTime datevalue1 = DateTime.Parse(PlayerPrefs.GetString("waitDate"));
                 DateTime datevalue2 = DateTime.Now;
                 TimeSpan timeDifference = datevalue1 - datevalue2;
-                string time = new DateTime(timeDifference.Ticks).ToString("mm:ss");
-                heartCountText.text = time;
+                string time = new DateTime(timeDifference.Ticks).ToString("hh:mm:ss");
+                string replace_time = "aa" + time;
+                heartCountText.text = replace_time.Replace("aa12:", "00:").Replace("aa01:", "01:");
 
-                if (int.Parse(time.Replace(":", "")) <= 0000)
+                if (int.Parse(time.Replace(":", "")) <= 000000)
                 {
-                    PlayerPrefs.SetInt("heart", 1);
+                    PlayerPrefs.SetInt("heart", 5);
                     PlayerPrefs.Save();
                     heartCountText.text = PlayerPrefs.GetInt("heart").ToString();
                     detectStartCountdown = false;
@@ -66,7 +67,7 @@ public class Heart : MonoBehaviour
         }
         catch (Exception err)
         {
-            PlayerPrefs.SetInt("heart", 1);
+            PlayerPrefs.SetInt("heart", 5);
             PlayerPrefs.Save();
             heartCountText.text = PlayerPrefs.GetInt("heart").ToString();
             detectStartCountdown = false;

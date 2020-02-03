@@ -18,7 +18,7 @@ public class Music : MonoBehaviour
     }
 
     public void ToggleSound()
-    {;
+    {
         if (PlayerPrefs.GetInt("Muted", 0) == 0)
         {
             PlayerPrefs.SetInt("Muted", 1);

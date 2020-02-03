@@ -102,8 +102,8 @@ public class Player : MonoBehaviour, IDamageable
     void Movement()
     {
         //horizontal input for left/right
-        //float move = Input.GetAxisRaw("Horizontal");
-        float move = CrossPlatformInputManager.GetAxis("Horizontal");
+        float move = Input.GetAxisRaw("Horizontal");
+        //float move = CrossPlatformInputManager.GetAxis("Horizontal");
 
         _grounded = IsGrounded();
 
@@ -206,7 +206,7 @@ public class Player : MonoBehaviour, IDamageable
 
         if (Health < 1)
         {
-            PlayerPrefs.SetString("waitDate", System.DateTime.Now.AddMinutes(30).ToString());
+            PlayerPrefs.SetString("waitDate", System.DateTime.Now.AddHours(1).AddMinutes(30).ToString());
             PlayerPrefs.Save();
 
             _playerAnim.Death();
