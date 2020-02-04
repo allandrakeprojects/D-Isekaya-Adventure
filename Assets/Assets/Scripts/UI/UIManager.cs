@@ -8,6 +8,9 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] private GameObject pauseMenu;
     public GameObject[] LevelBars;
+    public GameObject[] HeroMages;
+    public GameObject[] HeroCameras;
+
 
     private static UIManager _instance;
     public static UIManager Instance
@@ -50,6 +53,31 @@ public class UIManager : MonoBehaviour
             if (level == 5)
             {
                 LevelBars[3].SetActive(true);
+            }
+
+            int selected_hero = PlayerPrefs.GetInt("SELECTED_HERO");
+            if (selected_hero == 1)
+            {
+                HeroMages[0].SetActive(true);
+                HeroCameras[0].SetActive(true);
+            }
+
+            if (selected_hero == 2)
+            {
+                HeroMages[1].SetActive(true);
+                HeroCameras[1].SetActive(true);
+            }
+
+            if (selected_hero == 3)
+            {
+                HeroMages[2].SetActive(true);
+                HeroCameras[2].SetActive(true);
+            }
+
+            if (selected_hero == 4)
+            {
+                HeroMages[3].SetActive(true);
+                HeroCameras[3].SetActive(true);
             }
         }
         catch (Exception err)

@@ -16,7 +16,10 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private GameObject IAPMenu;
     [SerializeField] private GameObject LevelSelection;
     public Button[] LevelBars;
+    public Button[] HeroButtons;
     public GameObject about;
+    public GameObject hero;
+    public GameObject camera;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +27,7 @@ public class MainMenu : MonoBehaviour
         levelManager = GameObject.FindObjectOfType<LevelManager>();
         UpdateScore();
         UpdateLevel();
+        SelectedHero();
     }
 
     public void MainMenuButton()
@@ -150,6 +154,18 @@ public class MainMenu : MonoBehaviour
         about.SetActive(false);
     }
 
+    public void OpenHero()
+    {
+        hero.SetActive(true);
+        camera.SetActive(true);
+    }
+
+    public void CloseHero()
+    {
+        hero.SetActive(false);
+        camera.SetActive(false);
+    }
+
     public void UpdateScore()
     {
         Scene currentScene = SceneManager.GetActiveScene();
@@ -200,30 +216,55 @@ public class MainMenu : MonoBehaviour
                 PlayerPrefs.SetString("level", "1,0,0,0,0");
                 PlayerPrefs.Save();
                 LevelBars[0].interactable = true;
+                HeroButtons[0].interactable = true;
+                HeroButtons[0].GetComponentInChildren<Text>().text = "SELECT";
+                HeroButtons[1].GetComponentInChildren<Text>().text = "UNLOCK LVL 2";
+                HeroButtons[2].GetComponentInChildren<Text>().text = "UNLOCK LVL 3";
+                HeroButtons[3].GetComponentInChildren<Text>().text = "UNLOCK LVL 4";
             }
             else
             {
                 string level = PlayerPrefs.GetString("level");
-                Debug.Log(level);
                 string[] levels = level.Split(',');
+
                 if (levels[0] == "1")
                 {
                     LevelBars[0].interactable = true;
+                    HeroButtons[0].interactable = true;
+                    HeroButtons[0].GetComponentInChildren<Text>().text = "SELECT";
                 }
 
                 if (levels[1] == "1")
                 {
                     LevelBars[1].interactable = true;
+                    HeroButtons[1].interactable = true;
+                    HeroButtons[1].GetComponentInChildren<Text>().text = "SELECT";
+                }
+                else
+                {
+                    HeroButtons[1].GetComponentInChildren<Text>().text = "UNLOCK LVL 2";
                 }
 
                 if (levels[2] == "1")
                 {
                     LevelBars[2].interactable = true;
+                    HeroButtons[2].interactable = true;
+                    HeroButtons[2].GetComponentInChildren<Text>().text = "SELECT";
+                }
+                else
+                {
+                    HeroButtons[2].GetComponentInChildren<Text>().text = "UNLOCK LVL 3";
                 }
 
                 if (levels[3] == "1")
                 {
                     LevelBars[3].interactable = true;
+                    HeroButtons[3].interactable = true;
+                    HeroButtons[3].GetComponentInChildren<Text>().text = "SELECT";
+                }
+                else
+                {
+                    HeroButtons[3].GetComponentInChildren<Text>().text = "UNLOCK LVL 4";
                 }
 
                 if (levels[4] == "1")
@@ -236,5 +277,75 @@ public class MainMenu : MonoBehaviour
         {
             // leave blank
         }
+    }
+
+    public void SelectedHero()
+    {
+        try
+        {
+            int get_select = PlayerPrefs.GetInt("SELECTED_HERO", 1);
+            if (get_select == 1)
+            {
+                PlayerPrefs.SetInt("SELECTED_HERO", 1);
+                HeroButtons[0].GetComponentInChildren<Text>().text = "SELECTED";
+            }
+            else if (get_select == 2)
+            {
+                PlayerPrefs.SetInt("SELECTED_HERO", 2);
+                HeroButtons[1].GetComponentInChildren<Text>().text = "SELECTED";
+            }
+            else if (get_select == 3)
+            {
+                PlayerPrefs.SetInt("SELECTED_HERO", 3);
+                HeroButtons[2].GetComponentInChildren<Text>().text = "SELECTED";
+            }
+            else if (get_select == 4)
+            {
+                PlayerPrefs.SetInt("SELECTED_HERO", 4);
+                HeroButtons[3].GetComponentInChildren<Text>().text = "SELECTED";
+            }
+
+            PlayerPrefs.Save();
+        }
+        catch (Exception err)
+        {
+            // leave blank
+        }
+    }
+
+    public void SelectHero_01()
+    {
+        PlayerPrefs.SetInt("SELECTED_HERO", 1);
+        PlayerPrefs.Save();
+
+        UpdateLevel();
+        SelectedHero();
+    }
+
+    public void SelectHero_02()
+    {
+        PlayerPrefs.SetInt("SELECTED_HERO", 2);
+        PlayerPrefs.Save();
+
+        UpdateLevel();
+        SelectedHero();
+    }
+
+    public void SelectHero_03()
+    {
+        PlayerPrefs.SetInt("SELECTED_HERO", 3);
+        PlayerPrefs.Save();
+
+        UpdateLevel();
+        SelectedHero();
+    }
+
+    public void SelectHero_04()
+    {
+        PlayerPrefs.SetInt("SELECTED_HERO", 4);
+        PlayerPrefs.Save();
+
+        UpdateLevel();
+        SelectedHero();
     }
 }

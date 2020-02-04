@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour
 {
@@ -29,7 +30,14 @@ public abstract class Enemy : MonoBehaviour
     {
         anim = GetComponentInChildren<Animator>();
         sprite = GetComponentInChildren<SpriteRenderer>();
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        try
+        {
+            player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        }
+        catch (Exception err)
+        {
+            // leave blank
+        }
     }
 
     private void Start()
@@ -39,32 +47,40 @@ public abstract class Enemy : MonoBehaviour
 
     public virtual void Update()
     {
-        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Idle") && !anim.GetBool("InCombat"))
+        try
         {
-            return;
-        }
-
-        if (!isDead)
-        {
-            //keep calculating the distance between player and enemy
-            playerDistance = Vector3.Distance(this.transform.position, player.transform.position);
-
-            if (playerDistance > 2)
+            if (anim.GetCurrentAnimatorStateInfo(0).IsName("Idle") && !anim.GetBool("InCombat"))
             {
-                anim.SetBool("InCombat", false);
+                return;
+            }
 
-                // if the animation that is currently playing isn't Walk, do nothing
-                if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Walk"))
+            if (!isDead)
+            {
+                //keep calculating the distance between player and enemy
+                playerDistance = Vector3.Distance(this.transform.position, player.transform.position);
+
+                if (playerDistance > 2)
                 {
-                    return;
-                }
+                    anim.SetBool("InCombat", false);
 
-                Movement();
+                    // if the animation that is currently playing isn't Walk, do nothing
+                    if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Walk"))
+                    {
+                        return;
+                    }
+
+                    Movement();
+                }
+                else if (playerDistance <= 2)
+                {
+                    CombatMode();
+                }
             }
-            else if (playerDistance <= 2)
-            {
-                CombatMode();
-            }
+        }
+        catch (Exception err)
+        {
+            player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+            // leave blank
         }
     }
 
