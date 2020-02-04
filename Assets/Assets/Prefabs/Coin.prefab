@@ -70,7 +70,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 50
+  m_SortingOrder: 60
   m_Sprite: {fileID: 21300000, guid: 8c0785e86f8ee5a4983fb736be8705f9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -94,6 +94,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e69779630edea641b5bf73222e22487, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coins: 1
 --- !u!58 &6264369068839216477
 CircleCollider2D:
   m_ObjectHideFlags: 0

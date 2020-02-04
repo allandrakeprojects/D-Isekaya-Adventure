@@ -145,7 +145,7 @@ public class Player : MonoBehaviour, IDamageable
     {
         RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, Vector2.down, 1.0f, 1 << 8);
         Debug.DrawRay(transform.position, Vector2.down, Color.green);
-    
+
         if (hitInfo.collider != null)
         {
             if (!_resetJump)
@@ -163,23 +163,31 @@ public class Player : MonoBehaviour, IDamageable
     {
         if (faceRight)
         {
-            _playerSprite.flipX = false;
-            _swordArcSprite.flipX = false;
-            _swordArcSprite.flipY = false;
-
-            Vector3 newPos = _swordArcSprite.transform.localPosition;
+            Vector3 newPos = transform.localScale;
             newPos.x = 1.01f;
-            _swordArcSprite.transform.localPosition = newPos;
+            transform.localScale = newPos;
+
+            //_playerSprite.flipX = false;
+            //_swordArcSprite.flipX = false;
+            //_swordArcSprite.flipY = false;
+
+            //Vector3 newPos = _swordArcSprite.transform.localPosition;
+            //newPos.x = 1.01f;
+            //_swordArcSprite.transform.localPosition = newPos;
         }
         else
         {
-            _playerSprite.flipX = true;
-            _swordArcSprite.flipX = true;
-            _swordArcSprite.flipY = true;
-
-            Vector3 newPos = _swordArcSprite.transform.localPosition;
+            Vector3 newPos = transform.localScale;
             newPos.x = -1.01f;
-            _swordArcSprite.transform.localPosition = newPos;
+            transform.localScale = newPos;
+
+            //_playerSprite.flipX = true;
+            //_swordArcSprite.flipX = true;
+            //_swordArcSprite.flipY = true;
+
+            //Vector3 newPos = _swordArcSprite.transform.localPosition;
+            //newPos.x = -1.01f;
+            //_swordArcSprite.transform.localPosition = newPos;
         }
     }
 

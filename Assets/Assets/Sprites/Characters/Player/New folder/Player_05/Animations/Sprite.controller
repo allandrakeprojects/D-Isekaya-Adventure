@@ -396,7 +396,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 5dbb911a5faf2814491936d257941c0c, type: 2}
+  m_Motion: {fileID: 7400000, guid: 92698943b86d5e343968fcfb1cd37be5, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -448,7 +448,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 703aa2816615c4d4882d519acb12f16f, type: 2}
+  m_Motion: {fileID: 7400000, guid: 215b59dda70660e42b3b4e1d9cdcf4f1, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -476,7 +476,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: d65f0554a1fc1dc41902593a042dfcad, type: 2}
+  m_Motion: {fileID: 7400000, guid: 7ebc25635d959a74c9f144d549c15c48, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -505,7 +505,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 707a6889c2d858144bf8e94f1e48e0d8, type: 2}
+  m_Motion: {fileID: 7400000, guid: 074bcb38e47e263408aa51f59379c375, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -532,7 +532,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 98766a351e03fe745b0860a906958cea, type: 2}
+  m_Motion: {fileID: 7400000, guid: 507f79a937adeb24bb2f263faea0daa6, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -562,7 +562,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 1fadda68c52ef6b41bcbb3751b02820a, type: 2}
+  m_Motion: {fileID: 7400000, guid: c7cba21009e98584a8bc9d5be2216b42, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -604,7 +604,7 @@ AnimatorStateMachine:
   m_EntryTransitions: []
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []
-  m_AnyStatePosition: {x: 50, y: 20, z: 0}
+  m_AnyStatePosition: {x: 48, y: -12, z: 0}
   m_EntryPosition: {x: 50, y: 120, z: 0}
   m_ExitPosition: {x: 768, y: 72, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
