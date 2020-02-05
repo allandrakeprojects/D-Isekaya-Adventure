@@ -59,7 +59,26 @@ public abstract class Enemy : MonoBehaviour
                 //keep calculating the distance between player and enemy
                 playerDistance = Vector3.Distance(this.transform.position, player.transform.position);
 
-                if (playerDistance > 2)
+                if (PlayerPrefs.GetInt("IS_DIED") == 0)
+                {
+                    if (playerDistance > 2)
+                    {
+                        anim.SetBool("InCombat", false);
+
+                        // if the animation that is currently playing isn't Walk, do nothing
+                        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Walk"))
+                        {
+                            return;
+                        }
+
+                        Movement();
+                    }
+                    else if (playerDistance <= 2)
+                    {
+                        CombatMode();
+                    }
+                }
+                else
                 {
                     anim.SetBool("InCombat", false);
 
@@ -70,10 +89,6 @@ public abstract class Enemy : MonoBehaviour
                     }
 
                     Movement();
-                }
-                else if (playerDistance <= 2)
-                {
-                    CombatMode();
                 }
             }
         }

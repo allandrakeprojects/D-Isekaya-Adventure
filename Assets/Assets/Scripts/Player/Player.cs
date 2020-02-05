@@ -32,12 +32,20 @@ public class Player : MonoBehaviour, IDamageable
     private PlayerAnimation _playerAnim;
     private SpriteRenderer _playerSprite;
     private SpriteRenderer _swordArcSprite;
+    private Animator _anim;
 
     private LevelManager levelManager;
+
+    public GameObject retry;
+    public GameObject healthUnit;
+    public Image[] healthBars;
 
     // Start is called before the first frame update
     void Start()
     {
+        PlayerPrefs.SetInt("IS_DIED", 0);
+        PlayerPrefs.Save();
+
         //assign handle to rigidbody
         _rigidbody = GetComponent<Rigidbody2D>();
 
@@ -48,12 +56,16 @@ public class Player : MonoBehaviour, IDamageable
 
         _swordArcSprite = transform.GetChild(1).GetComponent<SpriteRenderer>();
 
+        _anim = FindObjectOfType<Player>().GetComponentInChildren<Animator>();
+
         Health = 4;
 
         damaged = false;
 
         levelManager = GameObject.FindObjectOfType<LevelManager>();
     }
+
+    private bool detectRetry = true;
 
     // Update is called once per frame
     void Update()
@@ -123,7 +135,6 @@ public class Player : MonoBehaviour, IDamageable
         //if ((Input.GetKeyDown(KeyCode.Space) && IsGrounded())
         if (CrossPlatformInputManager.GetButtonDown("A_Button") && IsGrounded())
         {
-            Debug.Log("Jump!");
             _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _jumpForce);
             StartCoroutine(ResetJumpRoutine());
 
@@ -138,7 +149,15 @@ public class Player : MonoBehaviour, IDamageable
 
         _rigidbody.velocity = new Vector2(move * _speed, _rigidbody.velocity.y);
 
-        _playerAnim.Move(move);
+        if (IsGrounded())
+        {
+            _playerAnim.Move(move);
+        }
+        else
+        {
+            _playerAnim.Jump(true);
+            _playerAnim.Move(0);
+        }
     }
 
     bool IsGrounded()
@@ -224,9 +243,60 @@ public class Player : MonoBehaviour, IDamageable
                 AudioSource.PlayClipAtPoint(playerSound[2], Camera.main.transform.position);
             }
 
-            levelManager.LoadLoseMenuAfterDelay();
+            PlayerPrefs.SetInt("IS_DIED", 1);
+            PlayerPrefs.Save();
+            //levelManager.LoadLoseMenuAfterDelay();
+            StartCoroutine(Retry_());
         }
     }
+
+    IEnumerator Retry_()
+    {
+        yield return new WaitForSeconds(1.0f);
+        retry.SetActive(true);
+        StartCoroutine(Reset_());
+    }
+
+    IEnumerator Reset_()
+    {
+        yield return new WaitForSeconds(0.5f);
+        //assign handle to rigidbody
+        _rigidbody = GetComponent<Rigidbody2D>();
+
+        //assign handle to playerAnimation
+        _playerAnim = GetComponent<PlayerAnimation>();
+
+        _playerSprite = GetComponentInChildren<SpriteRenderer>();
+
+        _swordArcSprite = transform.GetChild(1).GetComponent<SpriteRenderer>();
+
+        _anim = FindObjectOfType<Player>().GetComponentInChildren<Animator>();
+
+        Health = 4;
+
+        damaged = false;
+
+        levelManager = GameObject.FindObjectOfType<LevelManager>();
+
+        _anim.SetTrigger("Alive");
+
+        healthUnit.SetActive(true);
+        healthBars[0].enabled = true;
+        healthBars[1].enabled = true;
+        healthBars[2].enabled = true;
+        healthBars[3].enabled = true;
+
+        Vector3 newPos = transform.localScale;
+        newPos.x = 1.01f;
+        transform.localScale = newPos;
+
+        float last_x = PlayerPrefs.GetFloat("LAST_PLAYER_X");
+        float last_y = PlayerPrefs.GetFloat("LAST_PLAYER_Y");
+        float last_z = PlayerPrefs.GetFloat("LAST_PLAYER_Z");
+        transform.position = new Vector3(last_x, last_y, last_z);
+    }
+
+
 
     public void AddCoins(int amount)
     {

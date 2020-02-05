@@ -20,6 +20,7 @@ public class MainMenu : MonoBehaviour
     public GameObject about;
     public GameObject hero;
     public GameObject camera;
+    public GameObject retry;
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +29,50 @@ public class MainMenu : MonoBehaviour
         UpdateScore();
         UpdateLevel();
         SelectedHero();
+    }
+
+    private bool isRetryClick = true;
+
+    public void Retry()
+    {
+        print(0);
+        if (isRetryClick)
+        {
+            print(1);
+            isRetryClick = false;
+            StartCoroutine(WaitRetry());
+        }
+    }
+
+    IEnumerator WaitRetry()
+    {
+        yield return new WaitForSeconds(1.0f);
+        PlayerPrefs.SetInt("IS_DIED", 0);
+        PlayerPrefs.Save();
+
+        print(2);
+
+        if (PlayerPrefs.GetInt("heart") == 0)
+        {
+            messageHeartText.text = "Not Enough Heart!";
+        }
+        else
+        {
+            messageHeartText.text = "";
+            int getHeart = PlayerPrefs.GetInt("heart") - 1;
+            Debug.Log(getHeart.ToString());
+            PlayerPrefs.SetInt("heart", getHeart);
+            PlayerPrefs.Save();
+            heartCountText.text = getHeart.ToString();
+
+            retry.SetActive(false);
+            isRetryClick = true;
+        }
+
+        if (PlayerPrefs.GetInt("Muted") == 0)
+        {
+            AudioSource.PlayClipAtPoint(menuSound[0], Camera.main.transform.position);
+        }
     }
 
     public void MainMenuButton()
