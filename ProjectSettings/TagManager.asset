@@ -13,6 +13,7 @@ TagManager:
   - Level_3
   - Level_4
   - Level_5
+  - Fade
   layers:
   - Default
   - TransparentFX

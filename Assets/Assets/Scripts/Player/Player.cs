@@ -33,6 +33,7 @@ public class Player : MonoBehaviour, IDamageable
     private SpriteRenderer _playerSprite;
     private SpriteRenderer _swordArcSprite;
     private Animator _anim;
+    private Animator _animFade;
 
     private LevelManager levelManager;
 
@@ -57,6 +58,8 @@ public class Player : MonoBehaviour, IDamageable
         _swordArcSprite = transform.GetChild(1).GetComponent<SpriteRenderer>();
 
         _anim = FindObjectOfType<Player>().GetComponentInChildren<Animator>();
+
+        _animFade = GameObject.FindGameObjectWithTag("Fade").GetComponentInChildren<Animator>();
 
         Health = 4;
 
@@ -253,6 +256,7 @@ public class Player : MonoBehaviour, IDamageable
     IEnumerator Retry_()
     {
         yield return new WaitForSeconds(1.0f);
+        _animFade.SetTrigger("EnableFade");
         retry.SetActive(true);
         StartCoroutine(Reset_());
     }

@@ -21,11 +21,16 @@ public class MainMenu : MonoBehaviour
     public GameObject hero;
     public GameObject camera;
     public GameObject retry;
+    private Animator _anim;
+
 
     // Start is called before the first frame update
     void Start()
     {
         levelManager = GameObject.FindObjectOfType<LevelManager>();
+
+        _anim = GameObject.FindGameObjectWithTag("Fade").GetComponentInChildren<Animator>();
+
         UpdateScore();
         UpdateLevel();
         SelectedHero();
@@ -65,6 +70,7 @@ public class MainMenu : MonoBehaviour
             PlayerPrefs.Save();
             heartCountText.text = getHeart.ToString();
 
+            _anim.SetTrigger("FadeIn");
             retry.SetActive(false);
             isRetryClick = true;
         }
@@ -87,6 +93,7 @@ public class MainMenu : MonoBehaviour
             AudioSource.PlayClipAtPoint(menuSound[0], Camera.main.transform.position);
         }
 
+        _anim.SetBool("FadeOut", true);
         levelManager.LoadMainMenuAfterDelay();
     }
 
@@ -108,6 +115,8 @@ public class MainMenu : MonoBehaviour
                 PlayerPrefs.Save();
                 Debug.Log(getHeart.ToString());
                 heartCountText.text = getHeart.ToString();
+
+                _anim.SetBool("FadeOut", true);
                 levelManager.LoadGameAfterDelay();
             }
         }
