@@ -40,11 +40,15 @@ public class MainMenu : MonoBehaviour
 
     public void Retry()
     {
-        print(0);
         if (isRetryClick)
         {
-            print(1);
             isRetryClick = false;
+
+            if (PlayerPrefs.GetInt("Muted") == 0)
+            {
+                AudioSource.PlayClipAtPoint(menuSound[0], Camera.main.transform.position);
+            }
+
             StartCoroutine(WaitRetry());
         }
     }
@@ -54,8 +58,6 @@ public class MainMenu : MonoBehaviour
         yield return new WaitForSeconds(1.0f);
         PlayerPrefs.SetInt("IS_DIED", 0);
         PlayerPrefs.Save();
-
-        print(2);
 
         if (PlayerPrefs.GetInt("heart") == 0)
         {
@@ -73,11 +75,6 @@ public class MainMenu : MonoBehaviour
             _anim.SetTrigger("FadeIn");
             retry.SetActive(false);
             isRetryClick = true;
-        }
-
-        if (PlayerPrefs.GetInt("Muted") == 0)
-        {
-            AudioSource.PlayClipAtPoint(menuSound[0], Camera.main.transform.position);
         }
     }
 

@@ -94,6 +94,8 @@ public class Player : MonoBehaviour, IDamageable
                 {
                     AudioSource.PlayClipAtPoint(playerSound[1], Camera.main.transform.position);
                 }
+
+                AudioSource.PlayClipAtPoint(playerSound[7], Camera.main.transform.position);
             }
         }
 
@@ -117,8 +119,8 @@ public class Player : MonoBehaviour, IDamageable
     void Movement()
     {
         //horizontal input for left/right
-        float move = Input.GetAxisRaw("Horizontal");
-        //float move = CrossPlatformInputManager.GetAxis("Horizontal");
+        //float move = Input.GetAxisRaw("Horizontal");
+        float move = CrossPlatformInputManager.GetAxis("Horizontal");
 
         _grounded = IsGrounded();
 

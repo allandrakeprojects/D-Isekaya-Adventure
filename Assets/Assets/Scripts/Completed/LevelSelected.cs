@@ -37,7 +37,7 @@ public class LevelSelected : MonoBehaviour
         if (player != null)
         {
             previousLevelOne.SetActive(false);
-            previousPlayerOne.SetActive(false);
+            //previousPlayerOne.SetActive(false);
             previousLevel.SetActive(false);
             //previousPlayer.SetActive(false);
             //previousCam.SetActive(false);
