@@ -2941,7 +2941,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &438606585
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2958,7 +2958,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.012512207, y: 470.6}
+  m_AnchoredPosition: {x: -87, y: 454}
   m_SizeDelta: {x: 1921.4, y: 629.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &438606586
@@ -2992,8 +2992,14 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "GERI LEI MONIQUE B. YANES\r\nCARL JOHN S. DISU\r\nMARBEN V. ELLAMIL\r\nMARK
-    U. CARAS\r\nRYAN M. GANGANO \r\n"
+  m_Text: 'RYAN PAUL MESTICA
+
+    ZJ CAROLINO
+
+    ADRIAN JAMES DE VERA
+
+    ANNABEL
+    BANDARLIPE'
 --- !u!222 &438606587
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5948,7 +5954,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &911755399
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5965,7 +5971,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0000004312, y: 555}
+  m_AnchoredPosition: {x: -87, y: 126}
   m_SizeDelta: {x: 1921.4, y: 629.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &911755400
@@ -5999,7 +6005,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "DEAN: ENGR. JOSE JAY DE VERA \r\n"
+  m_Text: 'ADVISER: JAYSON TAMAYO, MIT
+
+'
 --- !u!222 &911755401
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6273,8 +6281,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -84.70001, y: -274.4}
-  m_SizeDelta: {x: 1906.1, y: 1183}
+  m_AnchoredPosition: {x: -62, y: -593}
+  m_SizeDelta: {x: 1972.9, y: 1489.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1002046816
 GameObject:
@@ -8586,7 +8594,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1517277432
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8606,8 +8614,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 18, y: -222}
-  m_SizeDelta: {x: 1921.4, y: 2119.1}
+  m_AnchoredPosition: {x: 144.8, y: -6.927058}
+  m_SizeDelta: {x: 1797.5, y: 2119.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1521519651
 GameObject:
@@ -8995,7 +9003,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1589808653
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9012,8 +9020,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.00000069663, y: 528}
-  m_SizeDelta: {x: 1921.4, y: 618.8}
+  m_AnchoredPosition: {x: -87, y: 810.45}
+  m_SizeDelta: {x: 1921.4, y: 159.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1589808654
 MonoBehaviour:
@@ -9046,7 +9054,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'SCHOOL OF ENGINEERING
+  m_Text: 'COLLEGE OF COMPUTING SCIENCES
 
 '
 --- !u!222 &1589808655
@@ -10049,8 +10057,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -192.4}
-  m_SizeDelta: {x: 0, y: 1625.1}
+  m_AnchoredPosition: {x: 0, y: -435.1}
+  m_SizeDelta: {x: 0, y: 2110.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1712476478
 GameObject:
